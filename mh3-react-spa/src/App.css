@@ -1,26 +1,39 @@
-:root {
-  --primary-color: #34CB79;
-  --title-color: #322153;
-  --text-color: #6C6C80;
-}
-
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  outline: none !important;
 }
 
-body {
-  background: #F0F0F5;
-  -webkit-font-smoothing: antialiased;
-  color: var(--text-color);
+main {
+  overflow: hidden;
 }
 
-body, input, button {
-  font-family: Roboto, Arial, Helvetica, sans-serif;
+.flex {
+  display: flex
 }
 
-h1, h2, h3, h4, h5, h6 {
-  color: var(--title-color);
-  font-family: Ubuntu;
+.col {
+  flex-direction: column;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.pd-24 {
+  padding: 24px;
+}
+
+a {
+  text-decoration: none;
+  color: unset;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 2px;
+  background: transparent;
 }

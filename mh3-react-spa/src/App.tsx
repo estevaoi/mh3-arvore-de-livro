@@ -1,15 +1,31 @@
-import { Container, CssBaseline, useMediaQuery } from '@material-ui/core';
+import { Avatar, CssBaseline, Drawer, List, ListItem, ListItemIcon, ListItemText, useMediaQuery } from '@material-ui/core';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import React from 'react';
+import AccountBoxIcon from '@material-ui/icons/AccountBox';
+import ClassIcon from '@material-ui/icons/Class';
+import DescriptionIcon from '@material-ui/icons/Description';
+import EmojiEventsIcon from '@material-ui/icons/EmojiEvents';
+import HomeIcon from '@material-ui/icons/Home';
+import SettingsIcon from '@material-ui/icons/Settings';
+import clsx from 'clsx';
+import React, { useEffect } from 'react';
+import { BrowserRouter, Link } from 'react-router-dom';
 import './App.css';
 import Routes from './routes';
+import { useStyles } from './styles';
+
+interface User {
+  name: string;
+  img: string;
+  type: string;
+  class: string;
+}
 
 function App() {
 
+  const classes = useStyles();
+  const matches = useMediaQuery('(min-width:450px)');
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: light)');
-  const theme = React.useMemo(
-    () =>
-      createMuiTheme({
+  const theme = React.useMemo(() => createMuiTheme({
         palette: {
           type: prefersDarkMode ? 'dark' : 'light',
           primary: {
@@ -41,18 +57,99 @@ function App() {
           // Por exemplo, mude de Red 500 para Red 300 ou Red 700.
           tonalOffset: 0.2,
         },
-      }),
+    }),
     [prefersDarkMode],
   )
-
+  
+  const [open, setOpen] = React.useState(matches);
+  const [user, setUser] = React.useState<User>();
+  
+  useEffect(() => {
+    setOpen(matches)
+  }, [matches])
+  
+  useEffect(() => {
+    const usr = sessionStorage.getItem('user');
+    setUser(usr ? JSON.parse(usr) : {
+      name: 'Ana',
+      type: 'Teacher',
+      class: 'Português',
+      img: './assets/images/teacher.jpg'
+    })
+  }, [])
+  
   return (
     <ThemeProvider theme={theme}>
-      <Container maxWidth="sm">
-        <CssBaseline/>
-        {/* <Button onClick={handleChangeTheme}>Trocar tema</Button> */}
-        <Routes/>
-      </Container>
+      <BrowserRouter>
+        <div className={classes.root}>
+          <CssBaseline />
+          {(
+            user ? <Drawer
+            variant='permanent'
+            className={clsx(classes.drawer, {
+              [classes.drawerOpen]: open,
+              [classes.drawerClose]: !open,
+            })}
+            classes={{
+              paper: clsx({
+                [classes.drawerOpen]: open,
+                [classes.drawerClose]: !open,
+              }),
+            }}
+          >
+            {(
+              matches && user ? <div className='flex col align-center pd-24'>
+              <Avatar 
+                alt='Avatar' 
+                src={user.img}
+                className={classes.large} />
+              <ListItemText 
+                primary={(user.type === 'Teacher' ? 'Prof. ' : '') + user.name}
+                secondary={user.type === 'Teacher' ? 'Português' : '1 Ano'} />
+            </div> : null
+            )}
+            <List>
+              <Link to={user?.type === 'Teacher' ? '/teacher-area' : user?.type === 'Student' ? '/student-area' : '/'}>
+                <ListItem button key='home'>
+                <ListItemIcon style={{ color: '#fff' }}><EmojiEventsIcon/></ListItemIcon>
+                  <ListItemText primary='Aventuras' />
+                </ListItem>
+              </Link>
+              <Link to='/'>
+                <ListItem button key='myAccount'>
+                  <ListItemIcon style={{ color: '#fff' }}><AccountBoxIcon/></ListItemIcon>
+                  <ListItemText primary='Minha Conta' />
+                </ListItem>
+              </Link>
+              <Link to='/'>
+                <ListItem button key='description'>
+                  <ListItemIcon style={{ color: '#fff' }}><DescriptionIcon/></ListItemIcon>
+                  <ListItemText primary='Notas' />
+                </ListItem>
+              </Link>
+              
+              <Link to='/'>
+                <ListItem button key='classes'>
+                  <ListItemIcon style={{ color: '#fff' }}><ClassIcon/></ListItemIcon>
+                  <ListItemText primary='Turmas' />
+                </ListItem>
+              </Link>
+              <Link to='/'>
+                <ListItem button key='settings'>
+                  <ListItemIcon style={{ color: '#fff' }}><SettingsIcon/></ListItemIcon>
+                  <ListItemText primary='Configurações' />
+                </ListItem>
+              </Link>
+            </List>
+          </Drawer> : null
+          )}
+          <main className={classes.content}>
+            <Routes/>
+          </main>
+        </div>
+      </BrowserRouter>
     </ThemeProvider>
+      
   );
 }
 
