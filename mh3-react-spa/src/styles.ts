@@ -227,5 +227,13 @@ createStyles({
     padding: '6px 16px',
     cursor: 'pointer'
   },
+  dialog: {
+    width: 300,
+    height: 300,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'column'
+  }
 }),
 );

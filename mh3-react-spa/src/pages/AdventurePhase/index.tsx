@@ -1,4 +1,4 @@
-import { Paper, Typography } from '@material-ui/core';
+import { Paper, Typography, Button } from '@material-ui/core';
 import Timeline from '@material-ui/lab/Timeline';
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -152,7 +152,7 @@ export default function AdventurePhase() {
       },
     ],
   });
-  const [actualPhase, setActualPhase] = React.useState<any>(adventure.phases[0]);
+  const [actualPhase, setActualPhase] = React.useState<any>(0);
 
   useEffect(() => {
     const id = 1;
@@ -163,30 +163,25 @@ export default function AdventurePhase() {
   }, [])
 
   const handleGoToBook = () => {
-    history.goBack();
+    history.push(`/student-adventure/${adventure._id}`)
   }
 
   const handleGoToTask = (task: any) => {
-    history.push(`/student-adventure-task/${actualPhase._id}/${task._id}`)
+    history.push(`/student-adventure-task/${adventure.phases[actualPhase]._id}/${task._id}`)
   }
   
   return (
     <div>
-      <h1>Aventura: {adventure?.title}</h1>
+      <h1>Fase {actualPhase+1}</h1>
       {( adventure?.book ? <div className={classes.flexCol}>
         <div className={`${classes.flexRow} ${classes.flexStart}`}>
-          <Paper elevation={3} className={classes.adventure}>
-            <img src={adventure?.book?.img} alt={adventure?.book?.title} className={classes.adventureInside} />
+          <Paper elevation={3} className={classes.adventureCard}>
+            <img src={adventure?.book?.img} alt={adventure?.book?.title} className={classes.adventureList} />
           </Paper>
           <div className={classes.flexColFull} style={{padding: '0 24px 24px'}}>
-            <h2>{adventure?.book?.title}</h2>
-            <div className={classes.flexRow}>
-              <h3 style={{margin: '0px'}}>Autor(a):</h3><span style={{fontSize: '1.17em'}}>{adventure?.book?.author}</span>
-            </div>
-            <br/>
-            <br/>
+            <h2>{adventure.phases[actualPhase]?.title}</h2>
             <Typography paragraph>
-              {adventure?.book?.description}
+              {adventure.phases[actualPhase]?.description}
             </Typography>
           </div>
         </div>
@@ -196,9 +191,9 @@ export default function AdventurePhase() {
       <h2>Tarefas</h2>
       <Timeline align="alternate">
         {(
-          actualPhase.tasks?.map((item: any, index: number) => (
+          adventure.phases[actualPhase].tasks?.map((item: any, index: number) => (
           <div className={classes.flexRow} key={index}>
-            <Paper elevation={3} className={classes.card} style={item.status === 'ok' ? {backgroundColor: '#24a37b'} : {}} onClick={() => handleGoToTask(item)}>
+            <Paper elevation={3} className={classes.card} style={item.status === 'ok' ? {backgroundColor: '#19c738'} : {}} onClick={() => handleGoToTask(item)}>
               {(
                 item.status === 'ok' ? <CheckIcon style={{color: '#fff'}}/> : <span className={`${classes.cardNumber}`}>{index+1}</span>
               )}
@@ -211,6 +206,12 @@ export default function AdventurePhase() {
         ))
         )}
       </Timeline>
+
+      <div className={`${classes.flexRow} ${classes.justifyCenter}`}>
+        <Button variant="contained" color="secondary" style={{width: 219, marginTop: 16}} onClick={handleGoToBook}>
+          Concluír Fase
+        </Button>
+      </div>
     </div>
   );
 }

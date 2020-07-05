@@ -181,6 +181,9 @@ export default function AdventureTask(props: any) {
             <Typography paragraph>
               {actualTask?.description}
             </Typography>
+            <Button variant="contained" color="primary" style={{width: 219, marginBottom: 24}} href={`https://www2.arvoredelivros.com.br/biblioteca/livro/${adventure?.book?.path}`} target="_blank">
+              Ler o livro
+            </Button>
           </div>
         </div>
       </div> : null

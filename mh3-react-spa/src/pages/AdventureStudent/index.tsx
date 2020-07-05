@@ -1,4 +1,4 @@
-import { Button, Paper, Typography } from '@material-ui/core';
+import { Button, Paper, Typography, Dialog, DialogTitle, List, ListItem, ListItemAvatar, Avatar, ListItemText } from '@material-ui/core';
 import CheckIcon from '@material-ui/icons/Check';
 import Timeline from '@material-ui/lab/Timeline';
 import TimelineConnector from '@material-ui/lab/TimelineConnector';
@@ -9,6 +9,37 @@ import TimelineSeparator from '@material-ui/lab/TimelineSeparator';
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useStyles } from '../../styles';
+
+interface DialogProps {
+  open: boolean;
+  selectedValue: string;
+  onClose: (value?: any) => void;
+}
+
+function CloseAdventureDialog(props: DialogProps) {
+  const classes = useStyles();
+  const { onClose, selectedValue, open } = props;
+
+  const handleClose = () => {
+    onClose()
+  }
+
+  return (
+    <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
+      <div className={classes.dialog}>
+        <DialogTitle id="simple-dialog-title">Parabéns!!!</DialogTitle>
+        <span>Voce concluíu a aventura!</span>
+        <div>
+          <span style={{paddingRight: 5}}>Ganhou</span><span style={{color: '#8553f4'}}>+1000 pontos!</span>
+        </div>
+        
+        <Button variant="contained" color="secondary" style={{width: 219, marginTop: 16}} onClick={handleClose}>
+          Fechar
+        </Button>
+    </div>
+      </Dialog>
+  )
+}
 
 export default function AdventureStudent() {
 
@@ -154,8 +185,33 @@ export default function AdventureStudent() {
         ],
         description: 'Chegamos no meio do livro'
       },
+      {
+        _id: '3',
+        title: 'Fim',
+        tasks: [
+          {
+            _id: '3',
+            title: 'Ler Capitulo 6',
+            description: 'Ler Capitulo 7',
+            questions: [
+              {
+                identifier: 1,
+                title: 'Sim'
+              },
+              {
+                identifier: 2,
+                title: 'Não'
+              },
+            ],
+            rightAnswer: 1
+          }
+        ],
+        description: 'Final Feliz'
+      },
     ],
   });
+
+  const [open, setOpen] = React.useState<boolean>(false);
 
   useEffect(() => {
     const id = 1;
@@ -165,8 +221,12 @@ export default function AdventureStudent() {
     // })
   }, [])
 
+  const handleClose = () => {
+    setOpen(false)
+  }
+
   const handleCloseAdventure = () => {
-    
+    setOpen(true)
   }
 
   const handleSelectPhase = (phase: any) => {
@@ -183,7 +243,7 @@ export default function AdventureStudent() {
             <img src={adventure?.book?.img} alt={adventure?.book?.title} className={classes.adventureInside} />
           </Paper>
           <div className={classes.flexColFull} style={{padding: '0 24px 24px'}}>
-            <h2>{adventure?.book?.title}</h2>
+            <h2>Livro base: {adventure?.book?.title}</h2>
             <div className={classes.flexRow}>
               <h3 style={{margin: '0px'}}>Autor(a):</h3><span style={{fontSize: '1.17em'}}>{adventure?.book?.author}</span>
             </div>
@@ -211,7 +271,7 @@ export default function AdventureStudent() {
           adventure?.phases?.map((item: any, index: number) => (
             <TimelineItem>
               <TimelineSeparator>
-                <TimelineDot style={{backgroundColor: item.status === 'ok' ? '#24a37b' : ''}} color={'grey'}>
+                <TimelineDot style={{backgroundColor: item.status === 'ok' ? '#19c738' : ''}} color={'grey'}>
                   {(
                     item.status === 'ok' ? <CheckIcon onClick={() => handleSelectPhase(item)}/> : <div onClick={() => handleSelectPhase(item)} className={`${classes.cardNumberTimeline}`}>{index+1}</div>
                   )}
@@ -230,6 +290,7 @@ export default function AdventureStudent() {
         ))
         )}
       </Timeline>
+      <CloseAdventureDialog selectedValue={adventure} open={open} onClose={handleClose}/>
     </div>
   );
 }
