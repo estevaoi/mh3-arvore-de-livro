@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { useStyles } from '../../styles';
 import SendIcon from '@material-ui/icons/Send'
 import CheckIcon from '@material-ui/icons/Check'
+import { Task } from 'interfaces/task';
 
 export default function AdventurePhase() {
 
@@ -191,7 +192,7 @@ export default function AdventurePhase() {
       <h2>Tarefas</h2>
       <Timeline align="alternate">
         {(
-          adventure.phases[actualPhase].tasks?.map((item: any, index: number) => (
+          adventure.phases[actualPhase].tasks?.map((item: Task, index: number) => (
           <div className={classes.flexRow} key={index}>
             <Paper elevation={3} className={classes.card} style={item.status === 'ok' ? {backgroundColor: '#19c738'} : {}} onClick={() => handleGoToTask(item)}>
               {(

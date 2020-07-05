@@ -6,6 +6,7 @@ import { useStyles } from '../../styles';
 import CreateTask from '../CreateTask';
 import { ModalProps } from 'interfaces/modal.props';
 import { Phase } from 'interfaces/phase';
+import { Task } from 'interfaces/task';
 
 function getModalStyle() {
   return {
@@ -27,7 +28,8 @@ const CreatePhase: React.FC<ModalProps> = (props: ModalProps) => {
     title: '',
     img: '',
     tasks: [],
-    description: ''
+    description: '',
+    points: 30
   });
 
   const handleChange: any = (prop: keyof Phase) => (event: any) => {
@@ -48,7 +50,7 @@ const CreatePhase: React.FC<ModalProps> = (props: ModalProps) => {
     setOpen(false)
   }
 
-  const handleSetTaks = (task: any) => {
+  const handleSetTaks = (task: Task) => {
     if (task) {
       if (task._id) {
         const taskIndex = values.tasks.findIndex((item: any) => item._id === task._id)

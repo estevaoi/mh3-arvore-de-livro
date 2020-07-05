@@ -29,6 +29,7 @@ const CreateAdventure: React.FC = () => {
     book: null,
     img: '',
     phases: [],
+    points: 30
   });
 
   const [books, setBooks] = React.useState<any[]>([])

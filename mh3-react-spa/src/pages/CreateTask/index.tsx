@@ -25,7 +25,8 @@ const CreateTask: React.FC<ModalProps> = (props: ModalProps) => {
     title: '',
     description: '',
     questions: [],
-    rightAnswer: null
+    rightAnswer: null,
+    points: 30
   });
 
   useEffect(() => {
