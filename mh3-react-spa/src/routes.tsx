@@ -17,6 +17,7 @@ const Routes = () => {
       <Route component={TeacherArea} path="/teacher-area" exact/>
       <Route component={StudentArea} path="/student-area" exact/>
       <Route component={CreateAdventure} path="/create-adventure" exact/>
+      <Route component={CreateAdventure} path="/edit-adventure/:id" exact/>
       <Route component={AdventureStudent} path="/student-adventure/:id" exact/>
       <Route component={AdventureTeacher} path="/teacher-adventure/:id" exact/>
       <Route component={AdventureMap} path="/adventure-map/:id" exact/>

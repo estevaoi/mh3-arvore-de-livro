@@ -7,4 +7,6 @@ export interface Adventure {
   img: string;
   phases: Array<any>;
   points: number;
+  progressClass?: any;
+  featuredStudents?: any;
 }
