@@ -12,6 +12,7 @@ import { BrowserRouter, Link } from 'react-router-dom';
 import './App.css';
 import Routes from './routes';
 import { useStyles } from './styles';
+import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 
 interface User {
   name: string;
@@ -115,7 +116,7 @@ function App() {
                   <ListItemText primary='Aventuras' />
                 </ListItem>
               </Link>
-              <Link to='/'>
+              {/* <Link to='/'>
                 <ListItem button key='myAccount'>
                   <ListItemIcon style={{ color: '#fff' }}><AccountBoxIcon/></ListItemIcon>
                   <ListItemText primary='Minha Conta' />
@@ -133,11 +134,17 @@ function App() {
                   <ListItemIcon style={{ color: '#fff' }}><ClassIcon/></ListItemIcon>
                   <ListItemText primary='Turmas' />
                 </ListItem>
-              </Link>
+              </Link> 
               <Link to='/'>
                 <ListItem button key='settings'>
                   <ListItemIcon style={{ color: '#fff' }}><SettingsIcon/></ListItemIcon>
                   <ListItemText primary='Configurações' />
+                </ListItem>
+              </Link>*/}
+              <Link to='/'>
+                <ListItem button key='exit'>
+                  <ListItemIcon style={{ color: '#fff' }}><PowerSettingsNewIcon/></ListItemIcon>
+                  <ListItemText primary='Sair' />
                 </ListItem>
               </Link>
             </List>
