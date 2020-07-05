@@ -9,12 +9,7 @@ import TimelineSeparator from '@material-ui/lab/TimelineSeparator';
 import React, { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useStyles } from '../../styles';
-
-interface DialogProps {
-  open: boolean;
-  selectedValue: string;
-  onClose: (value?: any) => void;
-}
+import { DialogProps } from 'interfaces/dialog-props';
 
 function CloseAdventureDialog(props: DialogProps) {
   const classes = useStyles();

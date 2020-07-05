@@ -2,19 +2,8 @@ import { FormControl, OutlinedInput, RadioGroup, FormControlLabel, Radio, Button
 import TextField from '@material-ui/core/TextField';
 import React, { useEffect } from 'react';
 import { useStyles } from '../../styles';
-
-interface Task {
-  _id: string;
-  title: string;
-  description: string;
-  questions: any[];
-  rightAnswer: any;
-}
-
-interface ModalProps {
-  selectedValue: Task;
-  onClose: (value?: Task) => void;
-}
+import { ModalProps } from 'interfaces/modal.props';
+import { Task } from 'interfaces/task';
 
 function getModalStyle() {
   return {

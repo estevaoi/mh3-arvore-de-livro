@@ -1,20 +1,13 @@
-import { FormControl, GridList, Modal, OutlinedInput, Paper, Button, InputAdornment, InputLabel } from '@material-ui/core';
+import { Button, FormControl, GridList, InputLabel, Modal, OutlinedInput, Paper } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import AddIcon from '@material-ui/icons/Add';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import { Adventure } from 'interfaces/adventure';
 import React from 'react';
 import treeApi from '../../services/arvore-api';
 import { useStyles } from '../../styles';
 import CreatePhase from '../CreatePhase';
-import SearchIcon from '@material-ui/icons/Search';
 
-interface Adventure {
-  _id: string;
-  title: string;
-  book: any;
-  img: string;
-  phases: Array<any>;
-}
 const body = {
   "query": "fragment bookNavigationFields on Book {\n  name\n  author\n  slug\n  layout\n  v2ready\n  degree\n  manualInfoChecked\n  description\n  imageUrlIntermediaria\n  imageUrlThumb\n  premium\n  __typename\n}\n\nquery SearchBookWithFiltersQuery($searchTerm: String!, $page: Int, $opts: String) {\n  searchBook: searchBookV2(searchTerm: $searchTerm, page: $page, opts: $opts) {\n    searchFilters\n    books {\n      ...bookNavigationFields\n      __typename\n    }\n    __typename\n  }\n}\n",
   "variables": {

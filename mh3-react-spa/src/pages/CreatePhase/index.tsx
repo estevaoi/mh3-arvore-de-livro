@@ -4,19 +4,8 @@ import AddIcon from '@material-ui/icons/Add';
 import React, { useEffect } from 'react';
 import { useStyles } from '../../styles';
 import CreateTask from '../CreateTask';
-
-interface Phase {
-  _id: string;
-  title: string;
-  img: string;
-  tasks: any;
-  description: string;
-}
-
-interface ModalProps {
-  selectedValue: Phase;
-  onClose: (value?: Phase) => void;
-}
+import { ModalProps } from 'interfaces/modal.props';
+import { Phase } from 'interfaces/phase';
 
 function getModalStyle() {
   return {
