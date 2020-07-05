@@ -5,4 +5,5 @@ export interface Phase {
   tasks: any;
   status?: 'ok' | null;
   description: string;
+  points: number;
 }

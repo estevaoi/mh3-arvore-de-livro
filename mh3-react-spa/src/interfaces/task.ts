@@ -6,4 +6,5 @@ export interface Task {
   questions: any[];
   rightAnswer: any;
   answer?: any;
+  points: number;
 }

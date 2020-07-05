@@ -6,4 +6,5 @@ export interface Adventure {
   book?: Book | null;
   img: string;
   phases: Array<any>;
+  points: number;
 }
