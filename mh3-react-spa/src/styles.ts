@@ -245,6 +245,9 @@ createStyles({
   },
   width50: {
     width: '50%'
+  },
+  contents: {
+    display: 'contents'
   }
 }),
 );
