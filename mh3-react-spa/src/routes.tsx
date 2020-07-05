@@ -7,6 +7,8 @@ import { Route } from 'react-router-dom'
 import Home from './pages/Home'
 import AdventurePhase from 'pages/AdventurePhase'
 import AdventureTask from 'pages/AdventureTask'
+import AdventureMap from 'pages/AdventureMap'
+import AdventureTeacher from 'pages/AdventureTeacher'
 
 const Routes = () => {
   return (
@@ -16,6 +18,8 @@ const Routes = () => {
       <Route component={StudentArea} path="/student-area" exact/>
       <Route component={CreateAdventure} path="/create-adventure" exact/>
       <Route component={AdventureStudent} path="/student-adventure/:id" exact/>
+      <Route component={AdventureTeacher} path="/teacher-adventure/:id" exact/>
+      <Route component={AdventureMap} path="/adventure-map/:id" exact/>
       <Route component={AdventurePhase} path="/student-adventure-phase/:id" exact/>
       <Route component={AdventureTask} path="/student-adventure-task/:idPhase/:idTask" exact/>
     </div>

@@ -8,6 +8,7 @@ import './styles.css';
 import { useHistory } from 'react-router-dom';
 import Loader from 'components/Loader';
 import { BOOK_BODY } from 'mock/book.mock';
+import { Adventure } from 'interfaces/adventure';
 
 interface Titles {
   img: string;
@@ -25,8 +26,8 @@ export default function TeacherArea() {
   const classes = useStyles();
   const history = useHistory();
 
-  const [myAdventures, setMyAdventures] = useState<Array<Titles>>([])
-  const [highlighted, setHighlighted] = useState<Array<Titles>>([])
+  const [myAdventures, setMyAdventures] = useState<Array<Adventure>>([])
+  const [highlighted, setHighlighted] = useState<Array<Adventure>>([])
   const [searchs, setSearchs] = useState<Array<Titles>>([])
   const [loading, setLoading] = useState<boolean>(false)
 
@@ -37,6 +38,7 @@ export default function TeacherArea() {
       const data = response?.data?.data?.searchBook?.books;
       setMyAdventures(data.map((item: any) => {
         return {
+          _id: '1',
           img: item.imageUrlThumb,
           title: item.name,
         }
@@ -53,6 +55,7 @@ export default function TeacherArea() {
       const data = response?.data?.data?.searchBook?.books;
       setHighlighted(data.map((item: any) => {
         return {
+          _id: '2',
           img: item.imageUrlThumb,
           title: item.name,
         }
@@ -90,6 +93,10 @@ export default function TeacherArea() {
   const handleCreateAdventure = () => {
     history.push('/create-adventure')
   }
+
+  const handleSelectAdventure = (adventure: Adventure) => {
+    history.push(`/teacher-adventure/${adventure._id}`)
+  }
   
   return (
     loading ? <Loader loading={loading}/> :
@@ -102,7 +109,7 @@ export default function TeacherArea() {
         <div className={classes.root}>
           <GridList className={classes.gridList} cols={2.5}>
             {myAdventures.map((adventure, index) => (
-              <Paper elevation={3} className={classes.adventureCard} key={index}>
+              <Paper elevation={3} className={classes.adventureCard} key={index} onClick={() => handleSelectAdventure(adventure)}>
                 <img src={adventure.img} alt={adventure.title} className={classes.adventureList} />
               </Paper>
             ))}

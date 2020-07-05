@@ -9,7 +9,7 @@ import TimelineSeparator from '@material-ui/lab/TimelineSeparator';
 import { DialogProps } from 'interfaces/dialog-props';
 import { ADVENTURE_MOCK } from 'mock/adventure.mock';
 import React, { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { useStyles } from '../../styles';
 
 function CloseAdventureDialog(props: DialogProps) {
@@ -23,10 +23,11 @@ function CloseAdventureDialog(props: DialogProps) {
   return (
     <Dialog onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
       <div className={classes.dialog}>
-        <DialogTitle id="simple-dialog-title">Parabéns!!!</DialogTitle>
-        <span>Voce concluíu a aventura!</span>
+        <h2 style={{fontSize: '1.75rem', margin: 0}}>Parabéns!!!</h2>
+        <img src='../assets/images/party-popper.gif' alt="" style={{width: 122}}/>
+        <span style={{fontSize: '1.3rem'}}>Voce concluíu a aventura!</span>
         <div>
-          <span style={{paddingRight: 5}}>Ganhou</span><span style={{color: '#8553f4'}}>+1000 pontos!</span>
+          <span style={{paddingRight: 5, fontSize: '1.3rem'}}>Ganhou</span><span style={{color: '#8553f4', fontSize: '1.3rem'}}>+1000 pontos!</span>
         </div>
         
         <Button variant="contained" color="secondary" style={{width: 219, marginTop: 16}} onClick={handleClose}>
@@ -90,9 +91,14 @@ export default function AdventureStudent() {
             <Button variant="contained" color="primary" style={{width: 219, marginBottom: 24}} href={`https://www2.arvoredelivros.com.br/biblioteca/livro/${adventure?.book?.path}`} target="_blank">
               Ler o livro
             </Button>
-            <Button variant="contained" color="secondary" style={{width: 219}} onClick={handleCloseAdventure}>
+            <Button variant="contained" color="secondary" style={{width: 219, marginBottom: 24}} onClick={handleCloseAdventure}>
               Concluír Anventura
             </Button>
+            <Link to='/adventure-map/1' >
+              <Button variant="contained" color="secondary" style={{width: 219}} onClick={handleCloseAdventure}>
+                Mapa da Anventura
+              </Button>
+            </Link>
           </div>
         </div>
       </div> : null
@@ -102,7 +108,7 @@ export default function AdventureStudent() {
       <Timeline align="alternate">
         {(
           adventure?.phases?.map((item: any, index: number) => (
-            <TimelineItem>
+            <TimelineItem key={index}>
               <TimelineSeparator>
                 <TimelineDot style={{backgroundColor: item.status === 'ok' ? '#19c738' : ''}} color={'grey'}>
                   {(

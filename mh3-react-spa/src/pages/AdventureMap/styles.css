@@ -1,0 +1,62 @@
+.containerMap {
+  display: flex;
+  height: calc(100vh - 102px);
+  width: calc(100vw - 264px);
+}
+
+.mapItem {
+  position: relative;
+  border-radius: 50%;
+  background-color: #FFF335;
+  font-size: 30px;
+  color: #1A89A4;
+  font-weight: bold;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.finish {
+  background-color: #AE58FF;
+  color: #fff;
+  width: 150px;
+  height: 150px;
+}
+
+.line {
+  top: 212px;
+  left: 437px;
+  position: absolute;
+}
+
+.line:after {
+  content: "";
+  position: absolute;
+  border-top: 1px solid black;
+  width: 260px;
+  transform: rotate(26deg);
+  transform-Origin: 0% 0%;
+  z-index: -1;
+}
+
+.line-inverted {
+  top: 212px;
+  left: 437px;
+  position: absolute;
+}
+
+.line-inverted:after {
+  content: "";
+  position: absolute;
+  border-top: 1px solid black;
+  width: 260px;
+  transform: rotate(-26deg);
+  transform-Origin: 0% 0%;
+  z-index: -1;
+}
+
+.trofeu {
+  height: 100px;
+}

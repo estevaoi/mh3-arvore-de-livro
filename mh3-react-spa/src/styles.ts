@@ -243,6 +243,8 @@ createStyles({
     alignItems: 'center',
     flexDirection: 'column'
   },
-  
+  width50: {
+    width: '50%'
+  }
 }),
 );
