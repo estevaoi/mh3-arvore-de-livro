@@ -1,18 +1,13 @@
 import { Avatar, CssBaseline, Drawer, List, ListItem, ListItemIcon, ListItemText, useMediaQuery } from '@material-ui/core';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import AccountBoxIcon from '@material-ui/icons/AccountBox';
-import ClassIcon from '@material-ui/icons/Class';
-import DescriptionIcon from '@material-ui/icons/Description';
 import EmojiEventsIcon from '@material-ui/icons/EmojiEvents';
-import HomeIcon from '@material-ui/icons/Home';
-import SettingsIcon from '@material-ui/icons/Settings';
+import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 import clsx from 'clsx';
 import React, { useEffect } from 'react';
 import { BrowserRouter, Link } from 'react-router-dom';
 import './App.css';
 import Routes from './routes';
 import { useStyles } from './styles';
-import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
 
 interface User {
   name: string;

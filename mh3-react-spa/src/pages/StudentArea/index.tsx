@@ -1,11 +1,12 @@
-import { FormControl, GridList, InputAdornment, OutlinedInput, Paper, InputLabel } from '@material-ui/core';
-import AddIcon from '@material-ui/icons/Add';
+import { FormControl, GridList, InputAdornment, InputLabel, OutlinedInput, Paper } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
+import Loader from 'components/Loader';
+import { BOOK_BODY } from 'mock/book.mock';
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import treeApi from '../../services/arvore-api';
 import { useStyles } from '../../styles';
 import './styles.css';
-import { useHistory } from 'react-router-dom';
 
 interface Titles {
   img: string;
@@ -18,15 +19,7 @@ interface Search {
 
 export default function StudentArea() {
 
-  const body = {
-    "query": "fragment bookNavigationFields on Book {\n  name\n  author\n  slug\n  layout\n  v2ready\n  degree\n  manualInfoChecked\n  description\n  imageUrlIntermediaria\n  imageUrlThumb\n  premium\n  __typename\n}\n\nquery SearchBookWithFiltersQuery($searchTerm: String!, $page: Int, $opts: String) {\n  searchBook: searchBookV2(searchTerm: $searchTerm, page: $page, opts: $opts) {\n    searchFilters\n    books {\n      ...bookNavigationFields\n      __typename\n    }\n    __typename\n  }\n}\n",
-    "variables": {
-        "searchTerm": "harry",
-        "opts": "",
-        "page": 1
-    },
-    "operationName": "SearchBookWithFiltersQuery"
-  }
+  const body = BOOK_BODY;
 
   const history = useHistory();
   const classes = useStyles();
@@ -34,8 +27,12 @@ export default function StudentArea() {
   const [myAdventures, setMyAdventures] = useState<Array<Titles>>([])
   const [highlighted, setHighlighted] = useState<Array<Titles>>([])
   const [searchs, setSearchs] = useState<Array<Titles>>([])
+  const [loading, setLoading] = useState<boolean>(false)
+  
 
   useEffect(() => {
+    setLoading(true)
+    let calls = 2;
     treeApi.post('/graphql', body).then(response => {
       const data = response?.data?.data?.searchBook?.books;
       setMyAdventures(data.map((item: any, index: number) => {
@@ -45,6 +42,9 @@ export default function StudentArea() {
           title: item.name,
         }
       }));
+      calls--;
+      if (calls === 0)
+        setLoading(false)
     })
 
     let body2 = JSON.parse(JSON.stringify(body))
@@ -59,6 +59,9 @@ export default function StudentArea() {
           title: item.name,
         }
       }));
+      calls--;
+      if (calls === 0)
+        setLoading(false)
     })
   }, [])
 
@@ -91,6 +94,7 @@ export default function StudentArea() {
   }
   
   return (
+    loading ? <Loader loading={loading}/> :
     <div>
       <h3>Minhas Aventuras em Andamento</h3>
       <div className={classes.flexRow}>

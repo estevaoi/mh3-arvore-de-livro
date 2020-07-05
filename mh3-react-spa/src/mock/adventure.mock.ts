@@ -1,6 +1,6 @@
 import { Adventure } from "interfaces/adventure";
 
-export const ADVENTURE_MOCK: Adventure = <Adventure>{
+export const ADVENTURE_MOCK: Adventure = {
   _id: '1',
   title: 'Wonder Women',
   book: {
@@ -8,7 +8,7 @@ export const ADVENTURE_MOCK: Adventure = <Adventure>{
     title: 'Wonder Women',
     img: 'https://s3-sa-east-1.amazonaws.com/files.arvoredelivros.com.br/books/images/wonder-women/thumb_9788555780417.jpg',
     author: 'Sam Maggs',
-    description: 'Pense no quanto alguém é capaz de alcançar quando tem à disposição todos os recursos e o apoio de que precisa para desenvolver plenamente suas habilidades. Agora pense no quão especial alguém deve ser para conseguir os mesmos resultados quando nada ao redor conspira a seu favor. Em \"Wonder Women\", o leitor conhecerá mulheres além de seu tempo. Pessoas brilhantes, que se recusaram a se acomodar no papel de coadjuvantes e foram à luta, tornando-se protagonistas de sua própria vida. Cientistas, engenheiras, matemáticas, aventureiras e inventoras cujos feitos mudaram os rumos da história.'
+    description: 'Pense no quanto alguém é capaz de alcançar quando tem à disposição todos os recursos e o apoio de que precisa para desenvolver plenamente suas habilidades. Agora pense no quão especial alguém deve ser para conseguir os mesmos resultados quando nada ao redor conspira a seu favor. Em Wonder Women, o leitor conhecerá mulheres além de seu tempo. Pessoas brilhantes, que se recusaram a se acomodar no papel de coadjuvantes e foram à luta, tornando-se protagonistas de sua própria vida. Cientistas, engenheiras, matemáticas, aventureiras e inventoras cujos feitos mudaram os rumos da história.'
   },
   phases: [
     {
@@ -149,4 +149,4 @@ export const ADVENTURE_MOCK: Adventure = <Adventure>{
       description: 'Chegamos no meio do livro'
     },
   ],
-}
+} as Adventure
