@@ -1,14 +1,13 @@
 import { Avatar, CssBaseline, Drawer, List, ListItem, ListItemIcon, ListItemText, useMediaQuery } from '@material-ui/core';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import EmojiEventsIcon from '@material-ui/icons/EmojiEvents';
 import PowerSettingsNewIcon from '@material-ui/icons/PowerSettingsNew';
+import SportsEsportsIcon from '@material-ui/icons/SportsEsports';
 import clsx from 'clsx';
 import React, { useEffect } from 'react';
 import { BrowserRouter, Link } from 'react-router-dom';
 import './App.css';
 import Routes from './routes';
 import { useStyles } from './styles';
-import SportsEsportsIcon from '@material-ui/icons/SportsEsports';
 
 interface User {
   name: string;
@@ -19,6 +18,7 @@ interface User {
 
 function App() {
 
+  // const location = useLocation();
   const classes = useStyles();
   const matches = useMediaQuery('(min-width:450px)');
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: light)');

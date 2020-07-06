@@ -1,20 +1,26 @@
 import React from 'react'
 import { useStyles } from 'styles'
 import './styles.css'
+import { useHistory } from 'react-router-dom'
 
 const AdventureMap = () => {
 
+  const history = useHistory();
   const classes = useStyles();
   const completed: boolean = true;
   const length: number = 3;
   const trofeu: string = '../assets/images/trofeu.svg'
+
+  const handleGoPhase = () => {
+    history.push(`/student-adventure-phase/1`)
+  }
 
   return (
     <div className={classes.flexCol}>
       <h1>Mapa da Aventura</h1>
       <div className='containerMap'>
         {(
-          length >= 1 ? <div className={`mapItem ${completed && length === 1? 'finish' : ''}`} style={{top: 80, left: '10%'}}>
+          length >= 1 ? <div className={`mapItem ${completed && length === 1? 'finish' : ''}`} style={{top: 80, left: '10%'}} onClick={handleGoPhase}>
             {completed && length === 1  ? <img src={trofeu}/> : <span>1</span>}
           </div> : null
         )}
