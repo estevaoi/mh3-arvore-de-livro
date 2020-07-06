@@ -43,6 +43,7 @@ const CreatePhase: React.FC<ModalProps> = (props: ModalProps) => {
   
   const [open, setOpen] = React.useState(false);
   const handleCreateTask = () => {
+    setTaskSelected(null)
     setOpen(true)
   };
 

@@ -104,7 +104,7 @@ export default function AdventureStudent() {
       </div> : null
       )}
       <br/><br/>
-      <h2>Desafios</h2>
+      <h2>Fases</h2>
       <Timeline align="alternate">
         {(
           adventure?.phases?.map((item: any, index: number) => (

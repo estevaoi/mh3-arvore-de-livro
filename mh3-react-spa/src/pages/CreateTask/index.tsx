@@ -61,9 +61,9 @@ const CreateTask: React.FC<ModalProps> = (props: ModalProps) => {
   return(
     <div style={modalStyle} className={classes.paper2}>
       <div className={classes.flexCol}>
-        <h3>Criar/ Alterar Tarefa</h3>
+        <h3>Criar/ Alterar Desafio</h3>
         <FormControl fullWidth className={classes.margin} variant="outlined">
-          <InputLabel htmlFor="outlined-title">Nome da Tarefa</InputLabel>
+          <InputLabel htmlFor="outlined-title">Nome da Desafio</InputLabel>
           <OutlinedInput
             id="outlined-title"
             value={values.title}
@@ -74,7 +74,7 @@ const CreateTask: React.FC<ModalProps> = (props: ModalProps) => {
         <TextField
           className={classes.margin}
           fullWidth
-          label='Descrição da Tarefa'
+          label='Descrição da Desafio'
           id="task-description"
           multiline
           rows={4}
