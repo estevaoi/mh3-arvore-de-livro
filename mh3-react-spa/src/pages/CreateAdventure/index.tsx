@@ -145,7 +145,7 @@ const CreateAdventure: React.FC = () => {
       </div> : null
       )}
       <div>
-        <h3>Fases</h3>
+        <h3>Desafios</h3>
         <div className={classes.flexRow}>
           <Paper elevation={3} className={classes.cardAdd} key='-1' onClick={handleCreatePhase}>
             <div className={classes.cardInside}><AddIcon fontSize="large" style={{color: '#fff'}}/></div>
