@@ -56,28 +56,35 @@ const AdventureTeacher: React.FC = () => {
           <h3>Progresso das turmas</h3>
           {(
             adventure.progressClass.map((item: any, index: number) => (
-              <Slider
-                key={index}
-                disabled={true}
-                style={{color: item?.color, marginTop: 16}}
-                defaultValue={item.percent}
-                step={1}
-                valueLabelDisplay="on"
-              />
+              <div>
+                <span>{item?.class}</span>
+                <Slider
+                  key={index}
+                  disabled={true}
+                  style={{color: item?.color, marginTop: 16}}
+                  defaultValue={item.percent}
+                  step={1}
+                  valueLabelDisplay="on"
+                />
+              </div>
             ))
           )}
           <br/>
           <h3>Alunos em destaque</h3>
           {(
             adventure.featuredStudents.map((item: any, index: number) => (
-              <Slider
-                key={index}
-                disabled={true}
-                style={{color: item?.color, marginTop: 16}}
-                defaultValue={item.percent}
-                step={1}
-                valueLabelDisplay="on"
-              />
+              <div>
+                <span style={{paddingRight: '5px'}}>{item?.student}</span>
+                <span>{item?.class}</span>
+                <Slider
+                  key={index}
+                  disabled={true}
+                  style={{color: item?.color, marginTop: 16}}
+                  defaultValue={item.percent}
+                  step={1}
+                  valueLabelDisplay="on"
+                />
+              </div>
             ))
           )}
         </div>
