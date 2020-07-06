@@ -207,5 +207,30 @@ export const ADVENTURE_MOCK: Adventure = {
       ],
       description: 'Chegamos no meio do livro'
     },
+    {
+      _id: '3',
+      title: 'Fim',
+      points: 30,
+      tasks: [
+        {
+          _id: '3',
+          title: 'Ler Capitulo 6 em 2 Dias',
+          description: 'Ler Capitulo 7 em 2 Dias',
+          points: 30,
+          questions: [
+            {
+              identifier: 1,
+              title: 'Sim'
+            },
+            {
+              identifier: 2,
+              title: 'Não'
+            },
+          ],
+          rightAnswer: 1
+        }
+      ],
+      description: 'Final feliz'
+    },
   ],
 } as Adventure
