@@ -8,6 +8,7 @@ import { BrowserRouter, Link } from 'react-router-dom';
 import './App.css';
 import Routes from './routes';
 import { useStyles } from './styles';
+import SportsEsportsIcon from '@material-ui/icons/SportsEsports';
 
 interface User {
   name: string;
@@ -107,7 +108,7 @@ function App() {
             <List>
               <Link to={user?.type === 'Teacher' ? '/teacher-area' : user?.type === 'Student' ? '/student-area' : '/'}>
                 <ListItem button key='home'>
-                <ListItemIcon style={{ color: '#fff' }}><EmojiEventsIcon/></ListItemIcon>
+                <ListItemIcon style={{ color: '#fff' }}><SportsEsportsIcon/></ListItemIcon>
                   <ListItemText primary='Aventuras' />
                 </ListItem>
               </Link>
