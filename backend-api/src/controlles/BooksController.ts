@@ -43,32 +43,32 @@ class BooksController {
 
     async index(req: Request, res: Response) {
 
-        const people = await knex('books')
+        const book = await knex('books')
             .select('*');
 
         return res.json({
-            people
+            book
         });
     }
 
     async view(req: Request, res: Response) {
         const { id } = req.params;
 
-        const people = await knex('books')
+        const book = await knex('books')
             .where('_id', id)
             .first();
 
-        if (!people)
+        if (!book)
             return res.status(400).json({
                 message: 'Book not found'
             });
 
         return res.json({
-            _id: people._id,
-            title: people.title,
-            img: people.img,
-            author: people.author,
-            description: people.description
+            _id: book._id,
+            title: book.title,
+            img: book.img,
+            author: book.author,
+            description: book.description
         });
     }
 

@@ -11,6 +11,13 @@ export async function up(knex: Knex): Promise<any> {
         table.string('status');
         table.string('description');
         table.integer('points');
+
+        table.integer('adventure')
+            .unsigned()
+            .references('_id')
+            .inTable('adventures');
+
+
     });
 }
 

@@ -8,6 +8,12 @@ export async function up(knex: Knex): Promise<any> {
         table.string('title');
         table.string('img');
         table.integer('points');
+
+        table.integer('book')
+            .unsigned()
+            .references('_id')
+            .inTable('books');
+
     });
 }
 
