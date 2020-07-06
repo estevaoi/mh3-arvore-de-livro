@@ -104,7 +104,7 @@ const CreatePhase: React.FC<ModalProps> = (props: ModalProps) => {
           variant="outlined"
         />
         <div>
-          <h3>Tarefas</h3>
+          <h3>Desafios</h3>
           <div className={classes.flexRow}>
             <Paper elevation={3} className={classes.cardAdd} key='-1' onClick={handleCreateTask}>
               <div className={classes.cardInside}><AddIcon fontSize="large" style={{color: '#fff'}}/></div>

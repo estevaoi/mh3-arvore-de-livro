@@ -51,7 +51,7 @@ export default function AdventurePhase() {
       </div> : null
       )}
       <br/><br/>
-      <h2>Tarefas</h2>
+      <h2>Desafios</h2>
       <Timeline align="alternate">
         {(
           adventure.phases[actualPhase].tasks?.map((item: Task, index: number) => (
