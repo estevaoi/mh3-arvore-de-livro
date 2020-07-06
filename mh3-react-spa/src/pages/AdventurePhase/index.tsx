@@ -62,7 +62,8 @@ export default function AdventurePhase() {
               )}
             </Paper>
             <Paper elevation={3} className={classes.cardDescription} onClick={() => handleGoToTask(item)}>
-              <span className={`${classes.cardText}`}>{item?.description}</span>
+              <span className={`${classes.cardText}`}>{item?.title}</span>
+              <span>+{item?.points} pontos XP</span>
               <SendIcon/>
             </Paper>
           </div>
